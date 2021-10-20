@@ -37,16 +37,20 @@ while True:
      print ("Total tries:",i)
      break
 
-        
+
 ### Q5
 
 import random
+
+highest=1
 
 for index in range (1,4):
 
     i = 1
     lucky_card= random.randint (1,100)
-    print (lucky_card)
+
+    if highest < lucky_card:
+        highest = lucky_card
 
     while True:
         user=int(input("Please enter a number:"))
@@ -61,3 +65,5 @@ for index in range (1,4):
             print ("Bingo")
             print ("Total tries:",i)
             break
+
+print ("The highest cards is:",highest)
