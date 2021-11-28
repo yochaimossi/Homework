@@ -1,0 +1,18 @@
+CREATE TABLE students (id INTEGER PRIMARY KEY, name TEXT, city TEXT, birth INTEGER);
+CREATE TABLE grades (id INTEGER PRIMARY KEY, grade INTEGER);
+
+SELECT students.id , students.name  FROM students JOIN grades ON students.name = grades.id;
+
+SELECT avg(grade) FROM grades;
+
+ALTER TABLE grades ADD COLUMN excellent text;
+
+UPDATE grades SET excellent = 'YES' WHERE grade >=90;
+UPDATE grades SET excellent = 'NO' WHERE grade <90;
+
+SELECT name FROM grades
+WHERE grade > (SELECT AVG(grade) FROM grades);
+
+SELECT name FROM grades
+WHERE grade = (SELECT MAX(grade) FROM grades);
+
