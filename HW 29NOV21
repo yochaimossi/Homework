@@ -1,0 +1,77 @@
+#Employee.py
+
+from abc import ABC, abstractmethod
+
+class Employee(ABC):
+    @abstractmethod
+    def __init__(self, id , name, address,age):
+        self.id = id
+        self.name = name
+        self.address = address
+        self.age = age
+
+    @abstractmethod
+    def calculateSalary (self):
+        pass
+
+    def __str__(self):
+         return f'{self.name}'
+
+
+#Worker.py
+
+from Employee import Employee
+
+class Worker(Employee):
+    def __init__(self,id, name, address,age,hours_per_day,hour_rate):
+        super().__init__(id, name, address, age)
+        self.hours_per_day = hours_per_day
+        self.hour_rate = hour_rate
+
+    def calculateSalary(self):
+        return self.hours_per_day * self.hour_rate
+
+    def __str__(self):
+        return super().__str__() + f' is a worker, and his salary is : {self.calculateSalary()}'
+        
+#Manager.py
+
+from Employee import Employee
+
+class Manager(Employee):
+    def __init__(self, id, name, address,age,number_of_employees,employee_rate):
+        super().__init__(id, name, address, age)
+        self.number_of_employees = number_of_employees
+        self.employee_rate = employee_rate
+
+    def calculateSalary(self):
+        return self.number_of_employees * self.employee_rate
+
+    def __str__(self):
+        return super().__str__() + f' is a manager,and his salary is : {self.calculateSalary()}'
+        
+ #Contractor.py
+ 
+ from Employee import Employee
+
+class Contractor(Employee):
+    def __init__(self,id, name, address,age,num_of_projects,pay_per_project):
+        super().__init__(id, name, address, age)
+        self.num_of_projects = num_of_projects
+        self.pay_per_project = pay_per_project
+
+    def calculateSalary(self):
+        return self.num_of_projects * self.pay_per_project
+
+    def __str__(self):
+        return super().__str__() + f' is a contractor, and his salary is : {self.calculateSalary()}'
+        
+ #Program.py
+  
+from Worker import Worker
+from Manager import Manager
+
+w1 = Worker ('30977','Danny','Tel-Aviv',32,8,40)
+print (w1)
+m1 = Manager ('36745','Yossi','Jerusalem',50,8,400)
+print (m1)
